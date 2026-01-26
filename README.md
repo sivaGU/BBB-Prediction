@@ -1,4 +1,4 @@
-# BBB Permeability Prediction GUI
+# CalcBB: BBB Permeability Prediction GUI
 
 A production-ready Streamlit web application for predicting Blood-Brain Barrier (BBB) permeability using the validated **BBB HandOff** ensemble model artifacts. The interface allows users to upload ligand structure files and receive BBB permeability predictions with RDKit feature calculations.
 
@@ -145,4 +145,5 @@ Questions, bug reports, or collaboration requests: **Dr. Sivanesan Dakshanamurth
 ## License
 
 See repository license file for details.
+
 
