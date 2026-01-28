@@ -1074,13 +1074,13 @@ def render_demo_page():
     st.divider()
     
     # How to use section
-    st.header("📖 How to Use the Tool")
+    st.header("How to Use the Tool")
     
     st.markdown("""
     ### Step-by-Step Guide
     
     1. **Navigate to Ligand Prediction**
-       - Click the "🧪 Ligand Prediction" button in the sidebar
+       - Click the "Ligand Prediction" button in the sidebar
        
     2. **Upload Your Ligand File**
        - Supported formats: SDF, MOL, PDB, PDBQT, MOL2, or CSV
@@ -1116,7 +1116,7 @@ def render_demo_page():
     st.divider()
     
     # Example ligands section
-    st.header("🧪 Example Ligands")
+    st.header("Example Ligands")
     
     st.markdown("""
     Below are example ligand files you can download and use to test the tool. These demonstrate
@@ -1130,7 +1130,7 @@ def render_demo_page():
     )
     
     # File upload section for users to contribute ligands
-    st.subheader("📤 Upload Demo Ligands")
+    st.subheader("Upload Demo Ligands")
     
     st.markdown("""
     Have a ligand file you'd like to share as a demo example? Upload it here and it will be added to the repository.
@@ -1195,7 +1195,7 @@ def render_demo_page():
     st.divider()
     
     # Tips and best practices
-    st.header("💡 Tips & Best Practices")
+    st.header("Tips & Best Practices")
     
     col1, col2 = st.columns(2)
     
@@ -1220,7 +1220,7 @@ def render_demo_page():
     st.divider()
     
     # FAQ section
-    st.header("❓ Frequently Asked Questions")
+    st.header("Frequently Asked Questions")
     
     with st.expander("What file formats are supported?"):
         st.markdown("""
@@ -1272,19 +1272,19 @@ def main():
     st.sidebar.markdown("")
     
     # Navigation buttons - use container width for full-width buttons
-    if st.sidebar.button("🏠 Home", use_container_width=True, 
+    if st.sidebar.button("Home", use_container_width=True, 
                          key="nav_home"):
         st.session_state.current_page = "Home"
     
-    if st.sidebar.button("🎯 Demo", use_container_width=True,
+    if st.sidebar.button("Demo", use_container_width=True,
                          key="nav_demo"):
         st.session_state.current_page = "Demo"
     
-    if st.sidebar.button("📚 Documentation", use_container_width=True,
+    if st.sidebar.button("Documentation", use_container_width=True,
                          key="nav_docs"):
         st.session_state.current_page = "Documentation"
     
-    if st.sidebar.button("🧪 Ligand Prediction", use_container_width=True,
+    if st.sidebar.button("Ligand Prediction", use_container_width=True,
                          key="nav_prediction"):
         st.session_state.current_page = "Ligand Prediction"
     
