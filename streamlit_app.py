@@ -59,20 +59,25 @@ st.markdown("""
         --midnight-azure: #0D4F5C;
     }
     
-    /* Page background - diagonal gradient: light powder (top-left) to midnight azure */
+    /* Page background - diagonal gradient only behind sidebar; main area stays white */
     .stApp {
         background: linear-gradient(135deg, #E0F4F8 0%, #B3E5F0 25%, #80D4E8 50%, #2A9DB5 75%, #0D4F5C 100%);
         background-attachment: fixed;
     }
     
-    /* Main content - near-white card, slightly transparent */
+    /* Main content area - solid white (sidebar unchanged) */
+    section.main,
+    .main {
+        background-color: #ffffff;
+    }
+    
     .main .block-container {
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: #ffffff;
         padding: 2rem 3rem;
         margin: 2rem auto;
         max-width: 1400px;
         border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(13, 79, 92, 0.15);
+        box-shadow: 0 2px 12px rgba(13, 79, 92, 0.08);
     }
     
     /* Sidebar - midnight azure (darkest blue) */
@@ -274,9 +279,9 @@ st.markdown("""
         border-color: rgba(255, 255, 255, 0.25);
     }
     
-    /* Main content area - near white for readability */
+    /* Main content area - white */
     .main .block-container > div {
-        background-color: transparent;
+        background-color: #ffffff;
     }
 </style>
 """, unsafe_allow_html=True)
