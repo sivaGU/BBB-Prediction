@@ -59,20 +59,27 @@ st.markdown("""
         --midnight-azure: #0D4F5C;
     }
     
-    /* Page background - diagonal gradient only behind sidebar; main area stays white */
+    /* App shell: white by default so main area is white */
     .stApp {
-        background: linear-gradient(135deg, #E0F4F8 0%, #B3E5F0 25%, #80D4E8 50%, #2A9DB5 75%, #0D4F5C 100%);
-        background-attachment: fixed;
+        background-color: #ffffff;
     }
     
-    /* Main content area - solid white (sidebar unchanged) */
+    /* Main content area - force white (multiple selectors for Streamlit version compatibility) */
     section.main,
-    .main {
-        background-color: #ffffff;
+    .main,
+    [data-testid="stAppViewContainer"] > div:not([data-testid="stSidebar"]) {
+        background-color: #ffffff !important;
     }
     
-    .main .block-container {
-        background-color: #ffffff;
+    /* Main column (sibling of sidebar) - force white */
+    div[data-testid="stAppViewContainer"] > div > div:not([data-testid="stSidebar"]) {
+        background-color: #ffffff !important;
+    }
+    
+    /* Content block in main area only (not sidebar) */
+    .main .block-container,
+    section.main .block-container {
+        background-color: #ffffff !important;
         padding: 2rem 3rem;
         margin: 2rem auto;
         max-width: 1400px;
@@ -1302,4 +1309,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
