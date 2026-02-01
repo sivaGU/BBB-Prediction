@@ -1,5 +1,5 @@
 """
-MechBBB CLI — predict from command line.
+MechBBB CLI. Predict from command line.
 Usage:
   python -m src.mechbbb.cli --smiles "CCO" "c1ccccc1" --output out.csv --artifact-dir .
   python -m src.mechbbb.cli --input example_inputs.csv --output out.csv --artifact-dir .

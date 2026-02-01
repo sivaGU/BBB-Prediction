@@ -1,5 +1,5 @@
 """
-CalcBB Streamlit GUI. Two-stage mechanistically augmented BBB permeability classifier (Model C).
+MechBBB Streamlit GUI. Two-stage mechanistically augmented BBB permeability classifier (Model C).
 
 Run from this folder (project root):
   streamlit run streamlit_app.py
@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-# Ensure project root (this folder) is on path for src.calcbb
+# Ensure project root (this folder) is on path for src.mechbbb
 PROJECT_ROOT = Path(__file__).resolve().parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
@@ -20,7 +20,7 @@ import streamlit as st
 import pandas as pd
 from rdkit import Chem
 
-from src.calcbb.predict import predict_single, predict_batch, load_predictor
+from src.mechbbb.predict import predict_single, predict_batch, load_predictor
 
 
 def extract_smiles_from_file(file_content: bytes, file_extension: str) -> Optional[str]:
@@ -91,11 +91,11 @@ def extract_smiles_from_file(file_content: bytes, file_extension: str) -> Option
 # ============================================================================
 
 st.set_page_config(
-    page_title="CalcBB - BBB Permeability Studio",
+    page_title="MechBBB - BBB Permeability Studio",
     page_icon=None,
     layout="wide",
     menu_items={
-        "Report a bug": "https://github.com/your-org/calcbb-gui/issues",
+        "Report a bug": "https://github.com/your-org/mechbbb-gui/issues",
         "About": "Two-stage mechanistically augmented BBB permeability classifier (Model C).",
     },
 )
@@ -339,7 +339,7 @@ DEFAULT_THRESHOLD = 0.35
 
 def render_home_page():
     """Render the home/dashboard page."""
-    st.title("CalcBB - Blood-Brain Barrier Permeability Studio")
+    st.title("MechBBB - Blood-Brain Barrier Permeability Studio")
     st.caption(
         "Two-stage mechanistically augmented BBB permeability classifier (Model C)."
     )
@@ -359,7 +359,7 @@ def render_home_page():
         """
         ## Why this app exists
         Drug discovery teams struggle to predict whether small molecules cross the blood-brain barrier.
-        CalcBB (Model C) is a two-stage mechanistically augmented classifier that first predicts
+        MechBBB (Model C) is a two-stage mechanistically augmented classifier that first predicts
         auxiliary ADME properties (efflux, influx, PAMPA) and then combines them with physicochemical
         and fingerprint features to predict BBB permeability. This approach improves both
         external generalization and interpretability.
@@ -380,7 +380,7 @@ def render_home_page():
     st.markdown("## Quick start")
 
     st.info(
-        "**Ready to predict!** Use the **CalcBB Prediction** page in the sidebar to enter SMILES strings or upload a CSV file and get BBB permeability predictions with mechanistic probabilities."
+        "**Ready to predict!** Use the **MechBBB Prediction** page in the sidebar to enter SMILES strings or upload a CSV file and get BBB permeability predictions with mechanistic probabilities."
     )
 
     st.markdown(
@@ -389,7 +389,7 @@ def render_home_page():
         ### Navigation
         - **Home:** This overview
         - **Documentation:** Setup, model details, and usage
-        - **CalcBB Prediction:** Run predictions (SMILES, structure files, or Batch CSV)
+        - **MechBBB Prediction:** Run predictions (SMILES, structure files, or Batch CSV)
         """
     )
 
@@ -397,12 +397,12 @@ def render_home_page():
 def render_documentation_page():
     """Render the documentation page."""
     st.title("Documentation & Runbook")
-    st.caption("Reference material for the CalcBB Model C classifier.")
+    st.caption("Reference material for the MechBBB Model C classifier.")
 
     st.markdown(
         """
         ## Purpose
-        This application provides a Streamlit interface for the CalcBB two-stage mechanistically augmented
+        This application provides a Streamlit interface for the MechBBB two-stage mechanistically augmented
         BBB permeability classifier (Model C). It supports single SMILES input, structure file upload (SDF, MOL, PDB, PDBQT, MOL2), and batch CSV processing.
         """
     )
@@ -414,7 +414,7 @@ def render_documentation_page():
         .
         ├── streamlit_app.py       # Main application
         ├── requirements.txt      # Dependencies
-        ├── src/calcbb/           # Prediction module
+        ├── src/mechbbb/          # Prediction module
         │   ├── predict.py        # predict_single, predict_batch, load_predictor
         │   └── cli.py            # Command-line interface
         └── artifacts/            # Model artifacts
@@ -451,8 +451,8 @@ def render_documentation_page():
         ## CLI usage
         From the project folder:
         ```bash
-        python -m src.calcbb.cli --smiles "CCO" "c1ccccc1" --output out.csv
-        python -m src.calcbb.cli --input example_inputs.csv --output out.csv
+        python -m src.mechbbb.cli --smiles "CCO" "c1ccccc1" --output out.csv
+        python -m src.mechbbb.cli --input example_inputs.csv --output out.csv
         ```
         Output columns: smiles, canonical_smiles, prob_BBB+, BBB_class, p_efflux, p_influx, p_pampa, threshold, error.
         """
@@ -461,12 +461,12 @@ def render_documentation_page():
     st.success("Questions? Contact: Dr. Sivanesan Dakshanamurthy (sd233@georgetown.edu)")
 
 
-def render_calcbb_prediction_page():
-    """Render the CalcBB prediction page."""
+def render_mechbbb_prediction_page():
+    """Render the MechBBB prediction page."""
     st.title("BBB Permeability Prediction")
     st.markdown(
         """
-        Predict BBB permeability using CalcBB (Model C). Enter a SMILES string, upload a structure file (SDF, MOL, PDB, PDBQT, MOL2), or upload a CSV file for batch processing.
+        Predict BBB permeability using MechBBB (Model C). Enter a SMILES string, upload a structure file (SDF, MOL, PDB, PDBQT, MOL2), or upload a CSV file for batch processing.
         The model outputs P(BBB+), mechanistic probabilities (p_efflux, p_influx, p_pampa), and classification.
         
         **Input modes:** Single SMILES or structure file | Batch (CSV with smiles/SMILES column)
@@ -490,7 +490,7 @@ def render_calcbb_prediction_page():
         "Classification threshold", 0.0, 1.0, DEFAULT_THRESHOLD, 0.01
     )
     st.sidebar.info(
-        "**CalcBB (Model C)** Default threshold 0.35 = MCC-optimal on BBBP validation."
+        "**MechBBB (Model C)** Default threshold 0.35 = MCC-optimal on BBBP validation."
     )
 
     st.divider()
@@ -598,7 +598,7 @@ def render_calcbb_prediction_page():
                     st.download_button(
                         "Download CSV",
                         df_out.to_csv(index=False),
-                        "calcbb_predictions.csv",
+                        "mechbbb_predictions.csv",
                         "text/csv",
                         key="download_csv",
                     )
@@ -607,7 +607,7 @@ def render_calcbb_prediction_page():
 
     st.divider()
     st.caption(
-        "CalcBB (Model C). Stage-1: efflux/influx/PAMPA. Stage-2: PhysChem+ECFP+mech."
+        "MechBBB (Model C). Stage-1: efflux/influx/PAMPA. Stage-2: PhysChem+ECFP+mech."
     )
 
 
@@ -629,8 +629,8 @@ def main():
     if st.sidebar.button("Documentation", use_container_width=True, key="nav_docs"):
         st.session_state.current_page = "Documentation"
 
-    if st.sidebar.button("CalcBB Prediction", use_container_width=True, key="nav_prediction"):
-        st.session_state.current_page = "CalcBB Prediction"
+    if st.sidebar.button("MechBBB Prediction", use_container_width=True, key="nav_prediction"):
+        st.session_state.current_page = "MechBBB Prediction"
 
     st.sidebar.markdown("---")
 
@@ -638,8 +638,8 @@ def main():
         render_home_page()
     elif st.session_state.current_page == "Documentation":
         render_documentation_page()
-    elif st.session_state.current_page == "CalcBB Prediction":
-        render_calcbb_prediction_page()
+    elif st.session_state.current_page == "MechBBB Prediction":
+        render_mechbbb_prediction_page()
 
 
 if __name__ == "__main__":

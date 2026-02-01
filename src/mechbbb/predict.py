@@ -1,7 +1,7 @@
 """
-MechBBB prediction module — two-stage Model C.
+MechBBB prediction module. Two-stage Model C.
 Stage-1: efflux, influx, PAMPA (PhysChem + ECFP4)
-Stage-2: PhysChem + ECFP4 + mechanistic probs → BBB+
+Stage-2: PhysChem + ECFP4 + mechanistic probs yields BBB+
 """
 from dataclasses import dataclass
 from pathlib import Path
